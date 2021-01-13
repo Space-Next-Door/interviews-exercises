@@ -1,12 +1,12 @@
-import {HomeLayout} from "../layouts/MainLayout";
+import {HomeLayout} from "../MainLayout";
 import SquareGuides from "../modules/home/components/SquareGuides";
 import SearchHeader from "../modules/home/components/SearchHeader";
 
 const Home = () => {
     return (
         <HomeLayout>
-            <SearchHeader />
-            <SquareGuides />
+            {/* <SearchHeader /> */}
+            {/* <SquareGuides /> */}
         </HomeLayout>
     )
 }

@@ -1,7 +1,7 @@
 import Document, {Html, Head, Main, NextScript} from "next/document";
 import React from 'react';
 import {ServerStyleSheets} from "@material-ui/styles"
-import {MuiTheme} from "../src/MuiTheme"
+import {MuiTheme} from "../MuiTheme"
 
 type Props = {
     pageProps: any
