@@ -5,8 +5,8 @@ import SearchHeader from "../modules/home/components/SearchHeader";
 const Home = () => {
     return (
         <HomeLayout>
-            {/* <SearchHeader /> */}
-            {/* <SquareGuides /> */}
+            <SearchHeader />
+             <SquareGuides />
         </HomeLayout>
     )
 }

@@ -1,4 +1,7 @@
+import React, {useContext} from 'react';
 import {Box, InputBase, makeStyles} from "@material-ui/core";
+import { AppContext,AppDispatchContext } from "../../../../../context/app.context"
+
 
 const useStyles = makeStyles(theme=>({
     root: {
@@ -24,13 +27,28 @@ const useStyles = makeStyles(theme=>({
 }))
 
 const Search = () => {
+const updateState = useContext(AppDispatchContext);
+const state = useContext(AppContext);
+console.log("search ", state);
+
 const classes = useStyles()
     return (
         <Box className={classes.root} >
             <Box className={classes.searchIcon}>
-                <img src="/images/Homepage/SearchIcon.svg" alt="SearchIcon"/>
+                <img src="/images/Homepage/SearchIcon.svg"
+                    alt="SearchIcon"
+                    />
             </Box>
-            <InputBase classes={{input:classes.input}} fullWidth placeholder="Where do you need space?"/>
+            <InputBase classes={{input:classes.input}} 
+                fullWidth 
+                placeholder="Where do you need space?"
+                onClick={()=>updateState((oldState)=> {
+                     return {
+                         ...oldState,
+                         isMobileSearchActive: !oldState.isMobileSearchActive
+                    }
+                    })}
+            />
         </Box>
     )
 }

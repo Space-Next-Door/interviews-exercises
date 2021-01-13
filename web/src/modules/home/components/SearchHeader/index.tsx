@@ -1,7 +1,11 @@
+import React, {useContext} from 'react';
 import {Box, makeStyles} from "@material-ui/core";
 import Title from "./Title";
 import Search from "./Search";
 import Image from "next/image";
+import { AppContext,AppDispatchContext } from "../../../../context/app.context"
+
+
 
 const useStyles = makeStyles({
     root: {
@@ -17,6 +21,9 @@ const useStyles = makeStyles({
 })
 
 const SearchHeader = () => {
+    const state = useContext(AppContext);
+    console.log('sate, ', state);
+    
     const classes = useStyles()
     return (
         <Box className={classes.root}>

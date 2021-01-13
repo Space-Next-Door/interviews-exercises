@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiTheme } from "../MuiTheme"
+import { AppContext,AppDispatchContext,initialState } from "../context/app.context"
 
 type Props = {
     Component:any,
@@ -11,6 +12,7 @@ type Props = {
 
 const MyApp = (props:Props) => {
   const { Component, pageProps } = props;
+  const [appState, setAppState] = useState(initialState);
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -28,7 +30,11 @@ const MyApp = (props:Props) => {
         </Head>
         <ThemeProvider theme={MuiTheme}>
           <CssBaseline />
-          <Component {...pageProps} />
+          <AppContext.Provider value={appState}>
+            <AppDispatchContext.Provider value={setAppState}>
+              <Component {...pageProps} />
+            </AppDispatchContext.Provider>
+          </AppContext.Provider>
         </ThemeProvider>
       </React.Fragment>
   );
