@@ -9,7 +9,7 @@ import BestOption from "../../modules/search/components/BestOption";
 import Items from "../../modules/search/components/Items";
 import AveragePrices from "../../modules/search/components/AveragePrices";
 import FilterPage from "../../modules/search/components/FilterPage";
-import MobileSearch from "../../modules/search/mobile";
+import MobileSearch from "../../modules/search/components/mobile";
 import {useState} from "react";
 import React, { useContext} from 'react';
 import { AppContext } from "../context/app.context"
