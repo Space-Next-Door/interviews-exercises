@@ -73,7 +73,7 @@ const fetchDataFromGQL = async(event) => {
 }
 
 const SearchInput = () => {
-    const [input, setinput] = useState({})
+    const [input, setinput] = useState('')
     const [result, setResult] = useState()
     const [resultError, setResultError] = useState(false)
     const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
@@ -89,7 +89,7 @@ const SearchInput = () => {
         setResult(null)
     };
       const handleOnClick = (value) => {
-          setinput({ 'value': value })
+          setinput( value )
           setOpen(false)
             setResultError(false)
             setResult(null)
@@ -131,7 +131,7 @@ const SearchInput = () => {
                 <Box className={classes.searchIcon}>
                     <img src="/images/Homepage/SearchIcon.svg" alt="SearchIcon"/>
                 </Box>
-                <InputBase classes={{input: classes.input}} name='search' value={input ? input?.value : null} onChange={handleOnChange} fullWidth placeholder="Singapore"/>
+                <InputBase classes={{input: classes.input}} name='search' value={input} onChange={handleOnChange} fullWidth placeholder="Singapore"/>
             </Box>
         </Box>
             <FullScreenDialog open={open} handleClose={handleClose} handleOnChange={handleOnChange} handleOnClick={handleOnClick} result={result} resultError={ resultError}/>
