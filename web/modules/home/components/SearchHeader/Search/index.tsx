@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Box, InputBase, makeStyles} from "@material-ui/core";
-import { AppDispatchContext } from "../../../../../context/app.context"
+import { AppDispatchContext } from "../../../../../src/context/app.context"
 import { isMobile } from 'react-device-detect';
 
 

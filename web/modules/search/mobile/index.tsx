@@ -1,12 +1,12 @@
 import { useState, useContext} from "react";
 import {makeStyles, Box} from "@material-ui/core";
-import {MobileLayout} from './header'
+import {MobileLayout} from '../../../layouts/MainLayout'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import { AppContext } from "../../../context/app.context"
+import { AppContext } from "../../../src/context/app.context"
 import Grey2Typography from "../../../components/Typographies/Grey2Typography";
 
 

@@ -1,6 +1,6 @@
 import {Box, makeStyles, Typography} from "@material-ui/core";
 import OneItem from "./OneItem";
-import mockData from "../../../../mocks/greatOptions"
+import mockData from "../../../../src/mocks/greatOptions"
 
 const useStyles = makeStyles({
 

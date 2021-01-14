@@ -1,7 +1,7 @@
 import {Box, makeStyles, Table, Typography} from "@material-ui/core";
 import TableHeadComponent from "./TableHead"
 import TableBodyComponent from "./TableBody";
-import mockData from "../../../../mocks/averagePrices"
+import mockData from "../../../../src/mocks/averagePrices"
 
 const useStyles = makeStyles(theme => ({
     root: {

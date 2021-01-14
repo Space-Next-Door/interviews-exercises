@@ -1,7 +1,7 @@
 import {useContext, useEffect} from "react";
 import {Box, InputBase, makeStyles, Typography} from "@material-ui/core";
-import UseLocation from "../../../customHooks/useLocation";
-import { AppDispatchContext } from "../../../context/app.context"
+import UseLocation from "../../../src/customHooks/useLocation";
+import { AppDispatchContext } from "../../../src/context/app.context"
 
 const useStyles = makeStyles(theme=>({
     searchBox: {

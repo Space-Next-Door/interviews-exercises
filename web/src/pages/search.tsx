@@ -1,14 +1,14 @@
 import {makeStyles, Box} from "@material-ui/core";
-import {HomeLayout} from '../MainLayout'
-import Header from "../modules/search/components/Header";
-import SearchLocation from "../modules/search/components/Search";
-import Map from "../modules/search/components/Map";
-import ViewOnMap from "../modules/search/components/ViewOnMap"
-import Filter from "../modules/search/components/Filter";
-import BestOption from "../modules/search/components/BestOption";
-import Items from "../modules/search/components/Items";
-import AveragePrices from "../modules/search/components/AveragePrices";
-import FilterPage from "../modules/search/components/FilterPage";
+import {HomeLayout} from '../../layouts/MainLayout'
+import Header from "../../modules/search/components/Header";
+import SearchLocation from "../../modules/search/components/Search";
+import Map from "../../modules/search/components/Map";
+import ViewOnMap from "../../modules/search/components/ViewOnMap"
+import Filter from "../../modules/search/components/Filter";
+import BestOption from "../../modules/search/components/BestOption";
+import Items from "../../modules/search/components/Items";
+import AveragePrices from "../../modules/search/components/AveragePrices";
+import FilterPage from "../../modules/search/components/FilterPage";
 import {useState} from "react";
 
 

@@ -3,7 +3,7 @@ import {Box, makeStyles} from "@material-ui/core";
 import Title from "./Title";
 import Search from "./Search";
 import Image from "next/image";
-import { AppContext,AppDispatchContext } from "../../../../context/app.context"
+import { AppContext,AppDispatchContext } from "../../../../src/context/app.context"
 
 
 
