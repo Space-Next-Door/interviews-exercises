@@ -7,7 +7,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import { AppContext } from "../../../src/context/app.context"
-import Grey2Typography from "../../../components/Typographies/Grey2Typography";
 
 
 
@@ -15,17 +14,14 @@ const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
         maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
+
     },
     relative: {
-      position: "relative"
+      position: "relative",
+      backgroundColor: "#FFFFFF"
     },
     filterWrap: {
         position: "relative",
-        zIndex: 2,
-        borderRadius: "32px 32px 0px 0px",
-        paddingTop: "1px",
-        backgroundColor: "#FFFFFF"
     }
 }))
 
@@ -47,7 +43,7 @@ const MobileSearch = () => {
                 return (<List component="nav" aria-label="main mailbox folders">
                 <ListItem button>
                 <ListItemIcon>
-                    <img src="/images/SearchLocation/location.svg" alt="location"/> 
+                   <img src="/images/SearchLocation/location.svg" alt="location"/> 
                 </ListItemIcon>
                 <ListItemText primary={renderLocationText(item)} />
                 </ListItem>
@@ -60,9 +56,7 @@ const MobileSearch = () => {
             <MobileLayout>
                 <Divider />
                 <Box className={classes.filterWrap}>
-                    <Grey2Typography>
-                        Singapore
-                    </Grey2Typography>
+                
                     <div className={classes.root}>
                         {
                             appState.locations.length > 0 && (

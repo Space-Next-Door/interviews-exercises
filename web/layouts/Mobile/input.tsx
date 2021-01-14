@@ -1,7 +1,7 @@
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Box, InputBase, makeStyles, Typography} from "@material-ui/core";
 import UseLocation from "../../src/customHooks/useLocation";
-import { AppDispatchContext } from "../../src/context/app.context"
+import { AppDispatchContext, AppContext } from "../../src/context/app.context"
 
 const useStyles = makeStyles(theme=>({
     searchBox: {
@@ -21,12 +21,17 @@ const useStyles = makeStyles(theme=>({
 
 }))
 
+type Props = {
+    updateComponent: boolean
+}
 
-
-const SearchInput = () => {
+const SearchInput = (props: Props) => {
+    const {updateComponent} = props
     const classes = useStyles()
     const { locationState, getLocations } = UseLocation()
     const updateState = useContext(AppDispatchContext);
+    const { selectedCountry } = useContext(AppContext);
+    const [inputText, setInputText] = useState('');
 
 
     useEffect(() => {
@@ -41,11 +46,15 @@ const SearchInput = () => {
         }
       }, [locationState])
 
-    const onChangeInput =(element, getLocations)=>{
-        const value = element.target.value
+    useEffect(() => {
+        onChangeInput(inputText)
+    }, [updateComponent])
+
+    const onChangeInput =(value)=>{
+        setInputText(value)
         getLocations({
-            name: `%${value}%`,
-            country: 'Singapore'
+            name: `%${inputText}%`,
+            country: selectedCountry
         })
     }
 
@@ -56,7 +65,7 @@ const SearchInput = () => {
                     classes={{input: classes.input}}
                     fullWidth
                     placeholder="Where do you need space?"
-                    onChange={(el)=> onChangeInput(el,getLocations)}
+                    onChange={(el)=> onChangeInput(el.target.value)}
                 />
             </Box>
         </Box>

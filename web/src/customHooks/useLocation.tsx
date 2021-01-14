@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ApolloError, useLazyQuery } from '@apollo/react-hooks'
-import { SEARCH_LOCATION } from '../graphql/queries/locations'
+import { SEARCH_LOCATION } from '../graphql/queries/geography'
 
 interface Location {
     country: {

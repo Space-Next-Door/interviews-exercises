@@ -27,3 +27,19 @@ export const SEARCH_LOCATION = gql`
           }
     }
 `
+
+
+export const FETCH_COUNTRIES = gql`
+    query FETCH_COUNTRY{
+      countries(
+        pagination: {
+         limit: 100
+         skip: 0
+       }
+     ){
+       edges{
+         name_en
+       }
+     }
+    }
+`

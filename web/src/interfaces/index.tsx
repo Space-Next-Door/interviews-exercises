@@ -1,4 +1,6 @@
 export interface AppState {
     isMobileSearchActive: Boolean,
-    locations?: any
+    locations?: any,
+    countries?: any,
+    selectedCountry?: string
   }
