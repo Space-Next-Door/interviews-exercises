@@ -1,7 +1,7 @@
 import React,{ useContext} from "react"
 import {AppBar, IconButton, makeStyles, Box} from "@material-ui/core";
 import SearchInput from "./input";
-import { AppDispatchContext } from "../../../src/context/app.context"
+import { AppDispatchContext } from "../../src/context/app.context"
 
 
 

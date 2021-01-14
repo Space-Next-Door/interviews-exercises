@@ -36,7 +36,7 @@ type Props = {
     className?: string
 }
 
-export const MobileLayout = (props: Props) => {
+export const HomeLayout = (props: Props) => {
 
     const classes = useStyles()
     const {children} = props

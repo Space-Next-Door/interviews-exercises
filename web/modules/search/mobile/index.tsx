@@ -1,6 +1,6 @@
 import { useState, useContext} from "react";
 import {makeStyles, Box} from "@material-ui/core";
-import {MobileLayout} from '../../../layouts/MainLayout'
+import {MobileLayout} from '../../../layouts/Mobile'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
