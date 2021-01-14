@@ -1,4 +1,7 @@
+import {useContext, useEffect} from "react";
 import {Box, InputBase, makeStyles, Typography} from "@material-ui/core";
+import UseLocation from "../../../customHooks/useLocation";
+import { AppDispatchContext } from "../../../context/app.context"
 
 const useStyles = makeStyles(theme=>({
     searchBox: {
@@ -18,13 +21,34 @@ const useStyles = makeStyles(theme=>({
 
 }))
 
-const onChangeInput =(element)=>{
-    const value = element.target.value
-    console.log(value);
-}
+
 
 const SearchInput = () => {
     const classes = useStyles()
+    const { locationState, getLocations } = UseLocation()
+    const updateState = useContext(AppDispatchContext);
+
+
+    useEffect(() => {
+        if (locationState) {
+            updateState((oldState)=> {
+            return {
+                ...oldState,
+                locations: locationState.data
+            }
+            })
+            
+        }
+      }, [locationState])
+
+    const onChangeInput =(element, getLocations)=>{
+        const value = element.target.value
+        getLocations({
+            name: `%${value}%`,
+            country: 'Singapore'
+        })
+    }
+
     return (
         <Box>
             <Box mb={5} className={classes.searchBox}>
@@ -32,7 +56,7 @@ const SearchInput = () => {
                     classes={{input: classes.input}}
                     fullWidth
                     placeholder="Where do you need space?"
-                    onChange={onChangeInput}
+                    onChange={(el)=> onChangeInput(el,getLocations)}
                 />
             </Box>
         </Box>

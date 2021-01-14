@@ -1,6 +1,9 @@
-import React from "react"
+import React,{ useContext} from "react"
 import {AppBar, IconButton, makeStyles, Box} from "@material-ui/core";
 import SearchInput from "./input";
+import { AppDispatchContext } from "../../../context/app.context"
+
+
 
 
 const useStyles = makeStyles({
@@ -28,14 +31,23 @@ type Props = {
     className?: string
 }
 
-export const HomeLayout = (props: Props) => {
-
+export const MobileLayout = (props: Props) => {
+    
+    
     const classes = useStyles()
+    const updateState = useContext(AppDispatchContext);
     const {children} = props
     return (
         <React.Fragment>
             <AppBar className={classes.root} position="static">
-                <Box className={classes.backButton}>
+                <Box className={classes.backButton} 
+                onClick={()=> updateState((oldState)=> {
+                    return {
+                        ...oldState,
+                        isMobileSearchActive: !oldState.isMobileSearchActive
+                    }
+                    })}
+                >
                     <img className={classes.backIcon} src="/images/MobileSearch/backIcon.svg" alt="menu"/>
                 </Box>
                 <Box className={classes.backButton}>

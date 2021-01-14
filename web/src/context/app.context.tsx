@@ -5,6 +5,7 @@ import { AppState } from '../interfaces'
 
 export const initialState: AppState = {
   isMobileSearchActive: true,
+  locations: []
 }
 
 export const AppContext =  createContext<AppState>(undefined);
