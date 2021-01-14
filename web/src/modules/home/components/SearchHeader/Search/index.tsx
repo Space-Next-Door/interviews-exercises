@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {Box, InputBase, makeStyles} from "@material-ui/core";
-import { AppContext,AppDispatchContext } from "../../../../../context/app.context"
+import { AppDispatchContext } from "../../../../../context/app.context"
+import { isMobile } from 'react-device-detect';
 
 
 const useStyles = makeStyles(theme=>({
@@ -28,8 +29,18 @@ const useStyles = makeStyles(theme=>({
 
 const Search = () => {
 const updateState = useContext(AppDispatchContext);
-const state = useContext(AppContext);
-console.log("search ", state);
+
+const openMobileSearch = ()=>{
+    if(isMobile) {
+        updateState((oldState)=> {
+            return {
+                ...oldState,
+                isMobileSearchActive: !oldState.isMobileSearchActive
+           }
+           })
+    }
+
+}
 
 const classes = useStyles()
     return (
@@ -42,12 +53,7 @@ const classes = useStyles()
             <InputBase classes={{input:classes.input}} 
                 fullWidth 
                 placeholder="Where do you need space?"
-                onClick={()=>updateState((oldState)=> {
-                     return {
-                         ...oldState,
-                         isMobileSearchActive: !oldState.isMobileSearchActive
-                    }
-                    })}
+                onClick={openMobileSearch}
             />
         </Box>
     )

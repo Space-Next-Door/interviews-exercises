@@ -22,7 +22,6 @@ const useStyles = makeStyles({
 
 const SearchHeader = () => {
     const state = useContext(AppContext);
-    console.log('sate, ', state);
     
     const classes = useStyles()
     return (
