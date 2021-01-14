@@ -4,7 +4,7 @@ import { AppState } from '../interfaces'
 
 
 export const initialState: AppState = {
-  isMobileSearchActive: true,
+  isMobileSearchActive: false,
   locations: [],
   selectedCountry: '',
 }

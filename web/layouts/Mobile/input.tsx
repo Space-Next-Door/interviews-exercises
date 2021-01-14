@@ -6,17 +6,27 @@ import { AppDispatchContext, AppContext } from "../../src/context/app.context"
 const useStyles = makeStyles(theme=>({
     searchBox: {
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     input: {
         fontSize: '12px',
+        width: '70vw',
         backgroundColor: "#E9E9E9",
         borderRadius: "15px",
+        marginTop: '10px',
         padding: "18px 15px",
         '&::placeholder': {
             opacity: '1',
             color: theme.palette.grey[100],
         }
+    },
+    backIcon: {
+        height: '15px',
+        width: '15px',
+        position: 'absolute',
+        top: '30px',
+        left: '80vw'
+
     },
 
 }))
@@ -53,7 +63,7 @@ const SearchInput = (props: Props) => {
     const onChangeInput =(value)=>{
         setInputText(value)
         getLocations({
-            name: `%${inputText}%`,
+            name: `%${value}%`,
             country: selectedCountry
         })
     }
@@ -66,7 +76,15 @@ const SearchInput = (props: Props) => {
                     fullWidth
                     placeholder="Where do you need space?"
                     onChange={(el)=> onChangeInput(el.target.value)}
+                    value={inputText}
                 />
+                    <img 
+                        className={classes.backIcon}
+                        src="/images/MobileSearch/close.svg"
+                        alt="close"
+                        onClick={()=> onChangeInput('')}
+                    />
+
             </Box>
         </Box>
     )

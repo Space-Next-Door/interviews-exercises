@@ -39,8 +39,8 @@ const MobileSearch = () => {
     }
     
     
-    const renderListItem = (item) => {
-                return (<List component="nav" aria-label="main mailbox folders">
+    const renderListItem = (item,index) => {
+                return (<List component="nav" aria-label="main mailbox folders" key={index}>
                 <ListItem button>
                 <ListItemIcon>
                    <img src="/images/SearchLocation/location.svg" alt="location"/> 
@@ -60,7 +60,7 @@ const MobileSearch = () => {
                     <div className={classes.root}>
                         {
                             appState.locations.length > 0 && (
-                                appState.locations.map((item)=> renderListItem(item))
+                                appState.locations.map((item,index)=> renderListItem(item,index))
                             )
                         }
                     </div>

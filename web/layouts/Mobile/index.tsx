@@ -11,7 +11,7 @@ const useStyles = makeStyles({
         backgroundColor: '#FFFFFF',
         boxShadow: 'none',
         display: '-webkit-inline-box',
-        padding: '0px 10px'
+        padding: '0px 10px',
     },
     backButton: {
         padding: '0px 5px',
@@ -78,13 +78,14 @@ export const MobileLayout = (props: Props) => {
 
     const renderCountries =()=>{
         if(countries.length > 0) {
-           return countries.map((item)=>{
+           return countries.map((item,index)=>{
                const {name_en} = item
                 return(
                     <Button size="medium" 
                         className={classes.countryBtn}
                         variant="outlined"
                         onClick={()=> resetCountries(name_en)}
+                        key={index}
                     >
                         {
                             selectedCountry === name_en &&

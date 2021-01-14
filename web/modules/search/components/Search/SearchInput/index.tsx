@@ -1,4 +1,7 @@
+import React, {useContext} from 'react';
 import {Box, InputBase, makeStyles, Typography} from "@material-ui/core";
+import { AppDispatchContext } from "../../../../../src/context/app.context"
+import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles(theme=>({
     boxLocation: {
@@ -33,6 +36,19 @@ const useStyles = makeStyles(theme=>({
 
 const SearchInput = () => {
     const classes = useStyles()
+    const updateState = useContext(AppDispatchContext);
+
+    const openMobileSearch = ()=>{
+        if(isMobile) {
+            updateState((oldState)=> {
+                return {
+                    ...oldState,
+                    isMobileSearchActive: !oldState.isMobileSearchActive
+            }
+            })
+        }
+
+    }
     return (
         <Box>
             <Box className={classes.boxLocation}>
@@ -45,7 +61,12 @@ const SearchInput = () => {
                 <Box className={classes.searchIcon}>
                     <img src="/images/Homepage/SearchIcon.svg" alt="SearchIcon"/>
                 </Box>
-                <InputBase classes={{input: classes.input}} fullWidth placeholder="Singapore"/>
+                <InputBase 
+                    classes={{input: classes.input}}
+                    fullWidth
+                    placeholder="Singapore"
+                    onClick={openMobileSearch}
+                  />
             </Box>
         </Box>
     )

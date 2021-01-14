@@ -9,7 +9,11 @@ import BestOption from "../../modules/search/components/BestOption";
 import Items from "../../modules/search/components/Items";
 import AveragePrices from "../../modules/search/components/AveragePrices";
 import FilterPage from "../../modules/search/components/FilterPage";
+import MobileSearch from "../../modules/search/mobile";
 import {useState} from "react";
+import React, { useContext} from 'react';
+import { AppContext } from "../context/app.context"
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -38,23 +42,27 @@ const useStyles = makeStyles(theme => ({
 const Search = () => {
     const [hidden, setHidden] = useState(false)
     const classes = useStyles()
+    const state = useContext(AppContext);
     return (
-        <Box className={classes.relative}>
-            <HomeLayout>
-                <Header/>
-                <SearchLocation/>
-                <Map/>
-                <Box className={classes.filterWrap}>
-                    <ViewOnMap/>
-                    <Box className={classes.line}></Box>
-                    <Filter hidden={hidden} setHidden={setHidden}/>
-                    <BestOption/>
-                    <Items/>
-                    <AveragePrices/>
-                </Box>
-            </HomeLayout>
-            <FilterPage hidden={hidden} setHidden={setHidden} />
-        </Box>
+        state.isMobileSearchActive ? 
+            <MobileSearch />
+            :
+            <Box className={classes.relative}>
+                <HomeLayout>
+                    <Header/>
+                    <SearchLocation/>
+                    <Map/>
+                    <Box className={classes.filterWrap}>
+                        <ViewOnMap/>
+                        <Box className={classes.line}></Box>
+                        <Filter hidden={hidden} setHidden={setHidden}/>
+                        <BestOption/>
+                        <Items/>
+                        <AveragePrices/>
+                    </Box>
+                </HomeLayout>
+                <FilterPage hidden={hidden} setHidden={setHidden} />
+            </Box>
     )
 }
 
