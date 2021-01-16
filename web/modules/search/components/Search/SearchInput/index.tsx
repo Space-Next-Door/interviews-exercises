@@ -131,7 +131,7 @@ const SearchInput = () => {
                 <Box className={classes.searchIcon}>
                     <img src="/images/Homepage/SearchIcon.svg" alt="SearchIcon"/>
                 </Box>
-                <InputBase classes={{input: classes.input}} name='search' value={input} onChange={handleOnChange} fullWidth placeholder="Singapore"/>
+                <InputBase classes={{input: classes.input}} name='search' value={input} onChange={handleOnChange} fullWidth placeholder="Where do you need space?"/>
             </Box>
         </Box>
             <FullScreenDialog open={open} handleClose={handleClose} handleOnChange={handleOnChange} handleOnClick={handleOnClick} result={result} resultError={ resultError}/>
