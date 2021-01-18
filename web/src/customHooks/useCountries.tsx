@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react'
-import { ApolloError, useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import { FETCH_COUNTRIES } from '../graphql/queries/geography'
-
-interface Countries {
-      name_en: string    
-}
+import { CountriesState } from '../interfaces'
 
 
-interface State {
-    loading:boolean;
-    error:string[] | ApolloError;
-    countries: Countries[];
-}
 const useCountries = () => {
-  const [countriesData, setCountriesData] = useState<State>({
+  const [countriesData, setCountriesData] = useState<CountriesState>({
     loading: false,
     error: [],
     countries: [],

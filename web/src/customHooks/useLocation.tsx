@@ -1,33 +1,12 @@
 import { useEffect, useState } from 'react'
-import { ApolloError, useLazyQuery } from '@apollo/react-hooks'
+import { useLazyQuery } from '@apollo/react-hooks'
 import { SEARCH_LOCATION } from '../graphql/queries/geography'
 import { debounce } from "../../src/utils" 
+import { LocationParms, LocationState } from '../interfaces'
 
-interface Location {
-    country: {
-      name_en: string
-    }
-    city: {
-      name_en: string
-    }
-    district: {
-      name_en: string
-    }
-    
-}
 
-interface LocationParms {
-  name: string,
-  country: string,
-}
-
-interface State {
-    loading:boolean;
-    error:string[] | ApolloError;
-    data: Location[];
-}
 const useLocation = () => {
-  const [locationState, setLocationState] = useState<State>({
+  const [locationState, setLocationState] = useState<LocationState>({
     loading: false,
     error: [],
     data: [],

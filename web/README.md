@@ -19,3 +19,6 @@ You can start editing the page by modifying `pages/index.ts`. The page auto-upda
 - All the components related to pages must directly go into `modules/[page_name]/components`. Layouts specific to every page should go inside `modules/[page_name]/layouts`.
 - Shared components must go inside `components/` folder
 - Shared layouts must go inside `layouts/` folder
+- Hooks must go inside `src/customHooks` folder
+- Graphql queries and mutation must go inside `src/graphql` folder
+- Interfaces must go inside `src/interfaces` folder
