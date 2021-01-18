@@ -3,4 +3,5 @@ export interface AppState {
     locations?: any,
     countries?: any,
     selectedCountry?: string
+    locationInputText?: string
   }

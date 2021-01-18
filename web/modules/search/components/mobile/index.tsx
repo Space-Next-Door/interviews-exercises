@@ -1,34 +1,17 @@
-import { useState, useContext} from "react";
-import {makeStyles, Box} from "@material-ui/core";
+import { useContext} from "react";
+import { Box} from "@material-ui/core";
 import {MobileLayout} from '../../../../layouts/Mobile'
+import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
 import { AppContext } from "../../../../src/context/app.context"
-
-
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-
-    },
-    relative: {
-      position: "relative",
-      backgroundColor: "#FFFFFF"
-    },
-    filterWrap: {
-        position: "relative",
-    }
-}))
+import UseStyles from "../../../../src/styles/searchMobileView"
 
 
 const MobileSearch = () => {
-    const classes = useStyles()
-    const [filteredLocation, setFilteredLocation] = useState([])
+    const classes = UseStyles()
     const appState = useContext(AppContext);
 
     const renderLocationText = (item) => {
@@ -50,13 +33,37 @@ const MobileSearch = () => {
             </List>
             )
     }
+
+    const renderNotFoundSection = () => {
+        if(appState.locations.length === 0 && appState.locationInputText){
+            return (<>
+                <Grid item className={classes.notFoundImageContiner}>
+                    <img 
+                    src="/images/MobileSearch/not-found.svg"
+                    alt="notfound"
+                    />
+                </Grid>
+                <Grid className={classes.textContainer}>
+                    <div className={classes.notFounHeadingText}>
+                        We cant find any locations that match your search
+                    </div>
+                </Grid>
+                <Grid className={classes.textContainer}>
+                    <div className={classes.notFoundText}>
+                        You can try changing your location Or 
+                        <a href={'javascript:void(0)'} className={classes.contactUsText}> contact us </a>
+                        for more information.
+                    </div>
+                </Grid>
+            </>
+            )
+        }
+}
       
     return (
         <Box className={classes.relative}>
             <MobileLayout>
-                <Divider />
-                <Box className={classes.filterWrap}>
-                
+                <Grid className={classes.listContiner}>
                     <div className={classes.root}>
                         {
                             appState.locations.length > 0 && (
@@ -64,7 +71,10 @@ const MobileSearch = () => {
                             )
                         }
                     </div>
-                </Box>
+                </Grid>
+                {renderNotFoundSection()}
+
+               
             </MobileLayout>
         </Box>
     )

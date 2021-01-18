@@ -14,18 +14,18 @@ const useStyles = makeStyles(theme=>({
         backgroundColor: "#E9E9E9",
         borderRadius: "15px",
         marginTop: '10px',
-        padding: "18px 15px",
+        padding: "18px 40px 18px 15px",
         '&::placeholder': {
             opacity: '1',
             color: theme.palette.grey[100],
         }
     },
-    backIcon: {
+    closeIcon: {
         height: '15px',
         width: '15px',
         position: 'absolute',
-        top: '30px',
-        left: '80vw'
+        top: '28px',
+        left: '90vw'
 
     },
 
@@ -62,7 +62,13 @@ const SearchInput = (props: Props) => {
 
     const onChangeInput =(value)=>{
         setInputText(value)
-        if(value && selectedCountry){
+        updateState((oldState)=> {
+            return {
+                ...oldState,
+                locationInputText: value
+            }
+        })
+        if(selectedCountry){
                 getLocations({
                     name: `%${value}%`,
                     country: selectedCountry
@@ -81,7 +87,7 @@ const SearchInput = (props: Props) => {
                     value={inputText}
                 />
                     <img 
-                        className={classes.backIcon}
+                        className={classes.closeIcon}
                         src="/images/MobileSearch/close.svg"
                         alt="close"
                         onClick={()=> onChangeInput('')}

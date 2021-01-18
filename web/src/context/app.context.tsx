@@ -7,6 +7,7 @@ export const initialState: AppState = {
   isMobileSearchActive: false,
   locations: [],
   selectedCountry: '',
+  locationInputText: ''
 }
 
 export const AppContext =  createContext<AppState>(undefined);

@@ -27,16 +27,18 @@ const useStyles = makeStyles({
         display: 'flex',
         overflowX: 'scroll',
         overflowY: 'hidden',
-        padding: '20px'
+        paddingLeft: '40px'
 
     },
-    countryWrap: {
+    countryText: {
         fontSize: '9px',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        paddingLeft: '8px'
     },
     countryBtn: {
         margin: '5px',
-        minWidth: '100px'
+        minWidth: '100px',
+        borderRadius: '20px'
     }
 })
 
@@ -91,7 +93,7 @@ export const MobileLayout = (props: Props) => {
                             selectedCountry === name_en &&
                             <img src="/images/SearchLocation/location.svg" alt="location"/> 
                         }
-                        <Grey2Typography className={classes.countryWrap}>
+                        <Grey2Typography className={classes.countryText}>
                             {name_en}
                         </Grey2Typography>
                     </Button>
