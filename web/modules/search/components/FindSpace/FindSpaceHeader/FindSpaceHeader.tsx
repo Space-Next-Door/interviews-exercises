@@ -10,6 +10,7 @@ import { useState } from "react";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    root: {},
     inputDiv: {
       backgroundColor: theme.palette.grey[50],
       borderRadius: "15px",
@@ -57,7 +58,7 @@ const FindSpaceHeader = (props: {
     searchSpaceByText(e.target.value);
   };
   return (
-    <Grid item container justify="center">
+    <Grid item container justify="center" className={classes.root}>
       <Grid
         item
         onClick={() => closeFindSpace()}

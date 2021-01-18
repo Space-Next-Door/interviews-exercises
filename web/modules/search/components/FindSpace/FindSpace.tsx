@@ -8,20 +8,22 @@ import { useState, useContext, useEffect } from "react";
 import NoSpaceIsFound from "./NoSpaceIsFound/NoSpaceIsFound";
 import { FindSpaceContext } from "../../context";
 
-const useStyles = makeStyles((theme) => createStyles({}));
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      [theme.breakpoints.down("sm")]: {
+        margin: "0 6px",
+      },
+    },
+  })
+);
 
 interface spaceData {
   country: { name_en: string };
   district: { name_en: string } | null;
 }
 
-interface PropsType {
-  // findSpace: boolean;
-  // setFindSpace: Function;
-  // setSelectedSpace: Function;
-}
-
-const FindSpace = (props: PropsType) => {
+const FindSpace = () => {
   const {
     showFindSpaceModal,
     setShowFindSpaceModal,
