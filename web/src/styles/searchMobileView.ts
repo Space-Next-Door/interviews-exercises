@@ -28,7 +28,7 @@ export const MainStyles = makeStyles(theme => ({
     },
     notFoundText: {
         textAlign: 'center',
-        padding: '0px 20px 40px 20px',
+        padding: '0px 18px 40px 18px',
         fontSize: '14px',
         lineHeight: '20px'
     },
