@@ -28,7 +28,7 @@ const MyApp = (props: Props) => {
         <title>My page</title>
         <meta
           name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
+          content="minimum-scale=1, initial-scale=1, width=device-width, maximum-scale=1.0"
         />
       </Head>
       <ThemeProvider theme={MuiTheme}>

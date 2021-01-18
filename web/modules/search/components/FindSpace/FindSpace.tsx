@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       [theme.breakpoints.down("sm")]: {
-        margin: "0 6px",
+        margin: "0 0",
       },
     },
   })
@@ -47,6 +47,7 @@ const FindSpace = () => {
 
   const searchSpaceByText = async (text) => {
     if (text.length > 0) {
+      setSearchErr("");
       try {
         const res: any = await searchSpace(text);
         setSpacesData(res.data.locations.edges);
@@ -94,7 +95,9 @@ const FindSpace = () => {
           ))}
       </Box>
       <Box>{noSpaceIsPresent && <NoSpaceIsFound />}</Box>
-      <Box>{searchErr && <Box mt={5}>{searchErr}</Box>}</Box>
+      <Box style={{ margin: "5px auto" }}>
+        {searchErr && <Box mt={5}>{searchErr}</Box>}
+      </Box>
     </Modal>
   );
 };
