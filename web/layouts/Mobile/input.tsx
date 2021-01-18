@@ -62,10 +62,12 @@ const SearchInput = (props: Props) => {
 
     const onChangeInput =(value)=>{
         setInputText(value)
-        getLocations({
-            name: `%${value}%`,
-            country: selectedCountry
-        })
+        if(value && selectedCountry){
+                getLocations({
+                    name: `%${value}%`,
+                    country: selectedCountry
+                })
+        }
     }
 
     return (

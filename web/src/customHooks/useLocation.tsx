@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ApolloError, useLazyQuery } from '@apollo/react-hooks'
 import { SEARCH_LOCATION } from '../graphql/queries/geography'
+import { debounce } from "../../src/utils" 
 
 interface Location {
     country: {
@@ -34,9 +35,11 @@ const useLocation = () => {
   const [trigger, { loading, error, data }] = useLazyQuery(SEARCH_LOCATION)
   
   const getLocations = (query: LocationParms) =>{
-    trigger({
-      variables: query
-    })
+    debounce(()=>{
+      trigger({
+        variables: query
+      })
+    },2000)
   }
 
   useEffect(() => {
