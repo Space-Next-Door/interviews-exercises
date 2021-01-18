@@ -7,11 +7,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { AppContext } from "../../../../src/context/app.context"
-import UseStyles from "../../../../src/styles/searchMobileView"
+import { MainStyles } from "../../../../src/styles/searchMobileView"
 
 
 const MobileSearch = () => {
-    const classes = UseStyles()
+    const classes = MainStyles()
     const appState = useContext(AppContext);
 
     const renderLocationText = (item) => {
@@ -51,7 +51,7 @@ const MobileSearch = () => {
                 <Grid className={classes.textContainer}>
                     <div className={classes.notFoundText}>
                         You can try changing your location Or 
-                        <a href={'javascript:void(0)'} className={classes.contactUsText}> contact us </a>
+                        <a href={'#'} className={classes.contactUsText}> contact us </a>
                         for more information.
                     </div>
                 </Grid>
