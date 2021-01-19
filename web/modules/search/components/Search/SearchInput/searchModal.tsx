@@ -5,11 +5,15 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { Box, InputBase,Divider,Button } from "@material-ui/core";
+import { Box, InputBase,Link,Divider,Button, Typography } from "@material-ui/core";
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+
+
+
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
    dialog:{
@@ -56,15 +60,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     options: {
       display: 'flex',
-      padding: '20px',
+      padding: '15px',
       overflowX: 'scroll',
       overflowY:'hidden'
     },
     options_button: {
       marginRight: '5px',
       minWidth: '100px',
-      padding: '5px 15px',
-      minHeight: 30
+      minHeight: 28,
+      borderRadius:"20px"
     },
     arrow: {
       height: 30,
@@ -74,15 +78,45 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     resultArea: {
       overflowY: 'scroll',
-      paddingTop: '18px',
-      paddingBottom: '8px',
       maxWidth: '300px',
-
       transform: 'scale(1.1, 1.1)',
       overflowX: 'hidden',
+    },
+    error: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent:'center'
+    },
+    error_text: {
+      width:"304px",
+      fontWeight:'600',
+      fontSize: '18px',
+      lineHeight: '20px',
+      textAlign:'center'
+    },
+    error_img: {
+      marginLeft:'50px'
+    },
+    error_text_secondary: {
+      fontFamily: 'Poppins',
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontSize: '14px',
+      lineHeight: '20px',
+      textAlign:'center',
+      letterSpacing: '0.5px',
 
 
+      color:' #333333',
+    },
+    error_text_div: {
+      position: 'absolute',
+      width: '275px',
+      height:' 86px',
+      left: '51px',
+      top: '296px',
     }
+
     
   }),
 );
@@ -96,8 +130,10 @@ const Transition = React.forwardRef(function Transition(
 
 export default function FullScreenDialog(props) {
   const classes = useStyles();
-  const { open, handleClose, handleOnChange, result, resultError, handleOnClick } = props
-  const button = ['Singapore','japan','thailand','china','pakistan']
+  const { open,handleInputState,input, handleClose, handleOnChange, result, resultError, handleOnClick } = props
+  const button = ['Singapore', 'japan', 'thailand', 'china', 'pakistan']
+  
+
 
   return (
     <div>
@@ -108,9 +144,9 @@ export default function FullScreenDialog(props) {
             <ArrowBackIcon className={classes.arrow} onClick={handleClose} />
             <Box mb={5} className={classes.searchBox}>
                 <Box className={classes.searchIcon}>
-              <CancelOutlinedIcon style={{height:20,width:20}}/>
+              <CancelOutlinedIcon onClick={handleInputState} style={{height:20,width:20}}/>
                 </Box>
-                <InputBase classes={{input: classes.input}} name='search'  onChange={handleOnChange} fullWidth placeholder="Where do you need space?"/>
+                <InputBase classes={{input: classes.input}} name='search' value={input}  onChange={handleOnChange} fullWidth placeholder="Where do you need space?"/>
             </Box>
         </Box>
         <div className={classes.options}>
@@ -122,13 +158,27 @@ export default function FullScreenDialog(props) {
 
           }
         </div>
-          <Divider className={classes.divider} />
           </div>
         <List>
           {
-            resultError && (<ListItem >
-              <ListItemText primary="no data found"/>
-          </ListItem>)
+            resultError && (
+              <>
+              <div className={classes.error}>
+                <div>
+                  <img className={classes.error_img} src='/images/SearchLocation/location.png' alt=''/>
+                  <Typography variant="h3" className={classes.error_text}>
+                    We can't find any location that match your search
+                  </Typography>
+                 
+                </div>
+              </div>
+               <div className={classes.error_text_div}>
+                  <Typography className={classes.error_text_secondary}>
+                    You can try changing your location Or <Link>contact us</Link> for more information.
+                  </Typography>
+                </div>
+                </>
+          )
           }
           {result && result.map((item, index) => {
             return(

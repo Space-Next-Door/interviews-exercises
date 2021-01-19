@@ -76,9 +76,14 @@ const SearchInput = () => {
     const [input, setinput] = useState('')
     const [result, setResult] = useState()
     const [resultError, setResultError] = useState(false)
+    console.log(input);
     const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
     const [open, setOpen] = useState(false);
-
+    
+    
+    const handleInputState = () => {
+        setinput('')
+    }
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -95,7 +100,7 @@ const SearchInput = () => {
             setResult(null)
   }
     const handleOnChange = async (event) => {
-
+        setinput(event.target.value)
         if (event.target.value == '' || event.target.value == undefined || event.target.value == null) {
                 setResult(null)
                 setResultError(false)
@@ -134,7 +139,7 @@ const SearchInput = () => {
                 <InputBase classes={{input: classes.input}} name='search' value={input} onChange={handleOnChange} fullWidth placeholder="Where do you need space?"/>
             </Box>
         </Box>
-            <FullScreenDialog open={open} handleClose={handleClose} handleOnChange={handleOnChange} handleOnClick={handleOnClick} result={result} resultError={ resultError}/>
+            <FullScreenDialog open={open} input={input} handleInputState={handleInputState} handleClose={handleClose} handleOnChange={handleOnChange} handleOnClick={handleOnClick} result={result} resultError={ resultError}/>
             </div>
     )
 }
