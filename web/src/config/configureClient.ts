@@ -1,7 +1,7 @@
-import {  ApolloClient, InMemoryCache } from '@apollo/client'
+import {  ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 import { SERVER } from './index'
 
-  const WithApollo = new ApolloClient({
+  const WithApollo = new ApolloClient<NormalizedCacheObject>({
     uri: SERVER,
     cache: new InMemoryCache(),
   });
