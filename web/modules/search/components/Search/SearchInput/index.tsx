@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Box, InputBase, makeStyles, Typography} from "@material-ui/core";
-import { AppDispatchContext } from "../../../../../src/context/app.context"
+import { AppDispatchContext, AppContext } from "../../../../../src/context/app.context"
 import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles(theme=>({
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme=>({
         backgroundColor: "#E9E9E9",
         borderRadius: "15px",
         padding: "18px 15px",
-        paddingLeft: "50px",
+        paddingLeft: "40px",
         '&::placeholder': {
             opacity: '1',
             color: theme.palette.grey[100],
@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme=>({
 const SearchInput = () => {
     const classes = useStyles()
     const updateState = useContext(AppDispatchContext);
+    const { selectedLocation } = useContext(AppContext);
 
     const openMobileSearch = ()=>{
         if(isMobile) {
@@ -66,6 +67,7 @@ const SearchInput = () => {
                     fullWidth
                     placeholder="Singapore"
                     onClick={openMobileSearch}
+                    value={selectedLocation}
                   />
             </Box>
         </Box>

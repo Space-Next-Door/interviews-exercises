@@ -4,7 +4,8 @@ export interface AppState {
     locations?: any,
     countries?: any,
     selectedCountry?: string
-    locationInputText?: string
+    locationInputText?: string,
+    selectedLocation: string
   }
 
   export interface Countries {

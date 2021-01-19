@@ -6,32 +6,46 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { AppContext } from "../../../../src/context/app.context"
+import { AppContext, AppDispatchContext } from "../../../../src/context/app.context"
 import { MainStyles } from "../../../../src/styles/searchMobileView" 
 
 
 const MobileSearch = () => {
     const classes = MainStyles()
     const appState = useContext(AppContext);
+    const updateState = useContext(AppDispatchContext);
 
     const renderLocationText = (item) => {
         const { district , city} = item
-        return `
+        let text = `
         ${district ? district.name_en + ', ' : ''}
         ${city.name_en}`;
+        return text.replaceAll('  ',' ')
     }
     
     
     const renderListItem = (item,index) => {
-                return (<List component="nav" aria-label="main mailbox folders" key={index}>
-                <ListItem button>
-                <ListItemIcon className={classes.mapPointerIconContainer}>
-                   <img src="/images/SearchLocation/location.svg" alt="location"/> 
-                </ListItemIcon>
-                <ListItemText primary={renderLocationText(item)} />
-                </ListItem>
-            </List>
-            )
+        const fullLocation =  renderLocationText(item)
+        return (<List
+            component="nav"
+            aria-label="main mailbox folders"
+            key={index}
+            onClick={()=> updateState((oldState)=> {
+                return {
+                    ...oldState,
+                    selectedLocation:  fullLocation,
+                    isMobileSearchActive: false
+                }
+                })}
+            >
+            <ListItem button>
+            <ListItemIcon className={classes.mapPointerIconContainer}>
+                <img src="/images/SearchLocation/location.svg" alt="location"/> 
+            </ListItemIcon>
+            <ListItemText primary={fullLocation} />
+            </ListItem>
+        </List>
+        )
     }
 
     const renderNotFoundSection = () => {
