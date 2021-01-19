@@ -3,13 +3,15 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiTheme } from "../src/MuiTheme"
+import { ApolloProvider } from "@apollo/react-hooks";
+import { client } from "../lib/apolloClient";
 
 type Props = {
-    Component:any,
-    pageProps:object
+  Component: any,
+  pageProps: object
 }
 
-const MyApp = (props:Props) => {
+const MyApp = (props: Props) => {
   const { Component, pageProps } = props;
 
   React.useEffect(() => {
@@ -21,16 +23,18 @@ const MyApp = (props:Props) => {
   }, []);
 
   return (
-      <React.Fragment>
-        <Head>
-          <title>My page</title>
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        </Head>
-        <ThemeProvider theme={MuiTheme}>
+    <React.Fragment>
+      <Head>
+        <title>My page</title>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+      </Head>
+      <ThemeProvider theme={MuiTheme}>
+        <ApolloProvider client={client}>
           <CssBaseline />
           <Component {...pageProps} />
-        </ThemeProvider>
-      </React.Fragment>
+        </ApolloProvider>
+      </ThemeProvider>
+    </React.Fragment>
   );
 }
 
