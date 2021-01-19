@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiTheme } from "../MuiTheme"
-import { ApolloProvider } from '@apollo/react-hooks'
+import { ApolloProvider } from "@apollo/client";
 import { AppContext,AppDispatchContext,initialState } from "../context/app.context"
 import { AppState } from '../interfaces'
 import Apollo from '../config/configureClient'

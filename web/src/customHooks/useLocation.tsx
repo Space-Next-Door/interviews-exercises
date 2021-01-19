@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLazyQuery } from '@apollo/react-hooks'
+import { useLazyQuery } from "@apollo/client";
 import { SEARCH_LOCATION } from '../graphql/queries/geography'
 import { debounce } from "../../src/utils" 
 import { LocationParms, LocationState } from '../interfaces'

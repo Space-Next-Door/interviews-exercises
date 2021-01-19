@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from "@apollo/client";
 import { FETCH_COUNTRIES } from '../graphql/queries/geography'
 import { CountriesState } from '../interfaces'
 

@@ -1,4 +1,4 @@
-import { ApolloError, useQuery } from '@apollo/react-hooks'
+import { ApolloError } from "@apollo/client";
 export interface AppState {
     isMobileSearchActive: Boolean,
     locations?: any,
