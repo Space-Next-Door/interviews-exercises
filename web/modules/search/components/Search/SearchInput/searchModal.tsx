@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: 5
     },
     resultArea: {
+      marginLeft:'20px',
       overflowY: 'scroll',
       maxWidth: '300px',
       transform: 'scale(1.1, 1.1)',

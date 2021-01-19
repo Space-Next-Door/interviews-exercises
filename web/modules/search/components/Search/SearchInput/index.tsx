@@ -101,7 +101,7 @@ const SearchInput = () => {
   }
     const handleOnChange = async (event) => {
         setinput(event.target.value)
-        if (event.target.value == '' || event.target.value == undefined || event.target.value == null) {
+        if (event.target.value == '' || event.target.value == undefined || event.target.value == null ) {
                 setResult(null)
                 setResultError(false)
         } else {
