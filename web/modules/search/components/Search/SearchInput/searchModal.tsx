@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     error_text: {
       width:"304px",
-      fontWeight:'600',
+      fontWeight:'bold',
       fontSize: '18px',
       lineHeight: '20px',
       textAlign:'center'
