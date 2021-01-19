@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { AppContext } from "../../../../src/context/app.context"
-import { MainStyles } from "../../../../src/styles/searchMobileView"
+import { MainStyles } from "../../../../src/styles/searchMobileView" 
 
 
 const MobileSearch = () => {
@@ -25,7 +25,7 @@ const MobileSearch = () => {
     const renderListItem = (item,index) => {
                 return (<List component="nav" aria-label="main mailbox folders" key={index}>
                 <ListItem button>
-                <ListItemIcon>
+                <ListItemIcon className={classes.mapPointerIconContainer}>
                    <img src="/images/SearchLocation/location.svg" alt="location"/> 
                 </ListItemIcon>
                 <ListItemText primary={renderLocationText(item)} />
