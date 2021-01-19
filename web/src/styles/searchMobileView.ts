@@ -39,7 +39,7 @@ export const MainStyles = makeStyles(theme => ({
         color: '#007FAF',
     },
     mapPointerIconContainer: {
-        minWidth: '30px'
+        minWidth: '30px !important'
     },
     
 }))
