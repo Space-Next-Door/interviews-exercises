@@ -1,7 +1,12 @@
 import { makeStyles, Box, InputBase, IconButton } from "@material-ui/core";
 
 import { useState } from "react";
-import { SearchBar, Pills, NoResults, Results } from "../modules/locations";
+import {
+  SearchBar,
+  Pills,
+  NoResults,
+  Results,
+} from "../modules/locations/components";
 const useStyles = makeStyles((theme) => ({
   relative: {
     position: "relative",
