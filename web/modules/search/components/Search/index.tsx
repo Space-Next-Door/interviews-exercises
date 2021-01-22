@@ -1,11 +1,4 @@
-import {
-  Box,
-  Divider,
-  InputBase,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import { useRouter } from "next/router";
+import { Box, Divider, makeStyles } from "@material-ui/core";
 import Dates from "./Dates";
 import SearchInput from "./SearchInput";
 
@@ -21,16 +14,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Search = () => {
+const Search = ({ onClick = () => null }) => {
   const classes = useStyles();
-  const router = useRouter();
-  const gotoSearchLocation = () => {
-    router.push("/search-location");
-  };
+
   return (
     <Box className={classes.root}>
-      <SearchInput onClick={gotoSearchLocation} />
-
+      <SearchInput onClick={onClick} />
       <Divider />
       <Dates />
     </Box>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, InputBase, makeStyles, Typography } from "@material-ui/core";
+import { Box, InputBase, makeStyles } from "@material-ui/core";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { useRouter } from "next/router";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { NotFound } from "./NotFound";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,14 +19,15 @@ const useStyles = makeStyles((theme) => ({
   search__panel: {
     display: "flex",
     alignItems: "center",
+    margin: "0 5px",
   },
   backButton: {
-    width: "13%",
+    display: "flex",
   },
   searchBox: {
     position: "relative",
-    margin: "4px 0 10px",
-    width: "87%",
+    margin: "10px 0 10px 10px",
+    width: "100%",
   },
   input: {
     fontSize: "12px",
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 2,
   },
   list: {
-    paddingLeft: 20,
+    paddingLeft: 0,
   },
   text: {
     fontSize: 18,
@@ -58,9 +59,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   listItem: {
-    margin: "28px 0",
+    margin: "30px 0",
     display: "flex",
     alignItems: "center",
+    padding: "5px 0",
   },
 
   loader: {
@@ -70,8 +72,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   notFound: {
-    color: "#555",
-    fontSize: 18,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -99,16 +99,11 @@ export const GET_LOCATIONS = gql`
   }
 `;
 
-export const SearchLocation = () => {
+export const SearchLocation = ({ onBackClick }) => {
   let searchTimeOut: any;
   const classes = useStyles();
-  const router = useRouter();
 
   const [searchKey, setSearchkey] = useState("");
-
-  const goBack = () => {
-    router.push("/search");
-  };
 
   const { loading, error, data, refetch } = useQuery(GET_LOCATIONS, {
     variables: { query: `%${searchKey}%` },
@@ -135,7 +130,7 @@ export const SearchLocation = () => {
     <Box className={classes.root}>
       <Box className={classes.search__panel}>
         <Box className={classes.backButton}>
-          <KeyboardBackspaceIcon onClick={goBack} fontSize={"large"} />
+          <KeyboardBackspaceIcon onClick={onBackClick} fontSize={"large"} />
         </Box>
         <Box mb={5} className={classes.searchBox}>
           <Box className={classes.searchIcon}>
@@ -169,7 +164,7 @@ export const SearchLocation = () => {
           })
         ) : loading ? null : (
           <div className={classes.notFound}>
-            <p>No Location Found</p>
+            <NotFound />
           </div>
         )}
         {loading && (
