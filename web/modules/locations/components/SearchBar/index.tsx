@@ -1,13 +1,9 @@
 import { makeStyles, Box, InputBase, IconButton } from "@material-ui/core";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import Link from "next/link";
-const client = new ApolloClient({
-  uri: "https://api-dev.spacenextdoor.com/graphql",
-  cache: new InMemoryCache(),
-});
 
 const useStyles = makeStyles((theme) => ({
   inputForm: {
@@ -47,44 +43,41 @@ const SearchBar = ({ results, setResults }) => {
   const [hidden, setHidden] = useState(false);
   const classes = useStyles();
   const [value, setValue] = useState("");
-  const onChange = async (event) => {
-    try {
-      setValue(event.target.value);
-      if (event.target.value.length < 1) return setResults(null);
-      let queryResults = await client.query({
-        query: gql`
-          query myQuery {
-            locations(
-              where: {
-                country: { _eq: Singapore }
-                name: { _iLike: "%${event.target.value}%" }
-              }
-            ) {
-              edges {
-                country {
-                  id
-                  name_en
-                }
-                city {
-                  id
-                  name_en
-                }
-                district {
-                  name_en
-                }
-              }
-            }
-          }
-        `,
-        variables: {
-          query: event.target.value,
-        },
-      });
-      setResults(queryResults.data.locations.edges);
-    } catch (error) {
-      console.log(error);
+
+  const query = gql`
+  query myQuery {
+    locations(
+      where: {
+        country: { _eq: Singapore }
+        name: { _iLike: "%${value}%" }
+      }
+    ) {
+      edges {
+        country {
+          id
+          name_en
+        }
+        city {
+          id
+          name_en
+        }
+        district {
+          name_en
+        }
+      }
     }
-  };
+  }
+`;
+  // Apollo Query Hook
+  const { data, loading, error } = useQuery(query);
+
+  useEffect(() => {
+    if (data && data.locations && data.locations.edges && value.length > 0) {
+      setResults(data.locations.edges);
+    } else {
+      setResults(null);
+    }
+  }, [data]);
 
   return (
     <form className={classes.inputForm} noValidate autoComplete="off">
@@ -101,7 +94,7 @@ const SearchBar = ({ results, setResults }) => {
         <InputBase
           id="outlined-basic"
           className={classes.searchInput}
-          onChange={onChange}
+          onChange={(event) => setValue(event.target.value)}
           value={value}
         />
         <IconButton
